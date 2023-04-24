@@ -7,6 +7,6 @@
 
 
 ## **SQL Files**
-* Schema File (/Employee_SQL/schema.sql)
-* Queries ( /Employee_SQL/query.sql)
+* Schema File (/schema.sql)
+* Queries ( /query.sql)
 
