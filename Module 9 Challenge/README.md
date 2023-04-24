@@ -3,7 +3,7 @@
   This is submission for Module 9 SQL Challenge
 
 ## **PNG file**
-*![Reference Image](/Employee_SQL/QuickDBD_export.png)
+*![Reference Image](/QuickDBD_export.png)
 
 
 ## **SQL Files**
