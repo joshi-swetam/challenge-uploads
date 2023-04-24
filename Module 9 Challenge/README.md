@@ -3,10 +3,10 @@
   This is submission for Module 9 SQL Challenge
 
 ## **PNG file**
-*![Reference Image](QuickDBD_export.png)
+*![Reference Image](QuickDBD-export.png)
 
 
 ## **SQL Files**
 * Schema File (schema.sql)
-* Queries ( query.sql)
+* Queries (query.sql)
 
