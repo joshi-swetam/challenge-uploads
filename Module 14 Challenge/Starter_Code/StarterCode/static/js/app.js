@@ -152,7 +152,7 @@ function showGuague(value) {
           type: "indicator",
           mode: "gauge+number",
           value: selectedMetadata.wfreq,
-          title: { text: "Belly Button Washing Frequency Scrubs per Week", font: { size: 24 } },
+          title: { text: "Belly Button Washing Frequency Scrubs per Week", font: { size: 20 } },
           ids: ["0-1", "1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-9"],
           gauge: {
                 axis: { 
