@@ -2,16 +2,19 @@ const url = " https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom
 
 let samples;
 
+// get data from url using d3.js
 let d3Output = d3.json(url).then(function(data){
 
     samples = data;
 
+    // select combo box
     const cmbNames = d3.select("#selDataset");
 
+    //add oti_ids as combo box options
     samples.names.forEach((sample) => {
         cmbNames
             .append("option")
-            .text("Sample " + sample)
+            .text(sample)
             .property("value", sample);
     });
 
@@ -28,6 +31,7 @@ function optionChanged(value) {
     showGuague(value);
 };
 
+// function to get sample based on selected id in combobox
 function getSelectedSample(value) {
     // select sample based on id
     return samples.samples.filter(
@@ -37,6 +41,7 @@ function getSelectedSample(value) {
         })[0];
 }
 
+// function to get metadata based on selected id in combobox
 function getSelectedMetadata(value) {
     // select sample based on id
     return samples.metadata.filter(
@@ -46,6 +51,7 @@ function getSelectedMetadata(value) {
         })[0];
 }
 
+// function to get dictionary of values based on selected id in combobox
 function getSelectedSampleOTUs(value) {
     // select sample based on id
     const selectedSample = getSelectedSample(value);
@@ -66,6 +72,7 @@ function getSelectedSampleOTUs(value) {
     return selectSampleOTUs;
 }
 
+// function to render bar chart for Top 10 OTUs
 function showTop10OTUs(value) {
     // create a list of dictionaries by combining list for otu ids, labels and values
     var selectSampleOTUs = getSelectedSampleOTUs(value);
@@ -98,14 +105,16 @@ function showTop10OTUs(value) {
     Plotly.newPlot("bar", data, layout);
 }
 
+// function to render bubble chart
 function showBubbleChart(value) {
-    // create a list of dictionaries by combining list for otu ids, labels and values
-    const selectSampleOTUs = getSelectedSampleOTUs(value);
+    // get sample based on selected id value
+    const selectedSample = getSelectedSample(value);
 
-    const otu_ids  = selectSampleOTUs.map((el) => { return el.otu_id });
-    const sample_values = selectSampleOTUs.map((el) => { return el.otu_value });
-    const otu_labels  = selectSampleOTUs.map((el) => { return el.otu_label });
+    const otu_ids  = selectedSample.otu_ids;
+    const sample_values = selectedSample.sample_values;
+    const otu_labels  = selectedSample.otu_labels;
 
+    //create trace object
     var trace1 = {
         x: otu_ids,
         y: sample_values,
@@ -127,9 +136,11 @@ function showBubbleChart(value) {
         showlegend: false,
         };
         
+        // render plot
         Plotly.newPlot('bubble', data, layout);
 }
 
+// function to render demographic information (metadata) for selected sample id
 function showDemographicInformation(value) {
     selectedMetadata = getSelectedMetadata(value);
     
@@ -145,6 +156,8 @@ function showDemographicInformation(value) {
     panelBody.append('div').text("  wfreq: " + selectedMetadata.wfreq);
 
 }
+
+// function to render guage for selected sample id -> wfreq
 function showGuague(value) {
     selectedMetadata = getSelectedMetadata(value);
 
@@ -179,6 +192,7 @@ function showGuague(value) {
 
     var data = [trace];
 
+    // render plot
     Plotly.newPlot('gauge', data, layout);
   }
 
